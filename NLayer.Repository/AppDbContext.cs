@@ -3,6 +3,7 @@ using NLayer.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,5 +20,11 @@ namespace NLayer.Repository
         public DbSet<ProductFeature> ProductFeatures { get; set; }  //best practice olması açısından bu kodu kapatmamız
         //gerekmektedir çünkü product feature'un olması için mutlaka product girilmesi gereklidir. 18.satırdaki kod
         //ile bunu gerçekleştirmiş oluruz.
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
