@@ -11,6 +11,6 @@ namespace NLayer.Core
         //tüm classlar için ortak bir class'tır.
         public int Id { get; set; } //product_Id şeklinde bir isimlendirme yapmıyoruz nedeni ise EF Core bunu "Id" şeklinde olan tanımlamayı direkt olarak algılamaktadır.
         public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; } //soru işaretinin sebebi nullable alan olmasıdır.
     }
 }

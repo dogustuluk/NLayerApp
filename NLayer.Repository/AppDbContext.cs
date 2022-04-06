@@ -24,6 +24,13 @@ namespace NLayer.Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            modelBuilder.Entity<ProductFeature>().HasData(
+                new ProductFeature {Id = 1, Color = "kırmızı", Height = 20, Width = 30, ProductId = 1 },
+                new ProductFeature { Id = 2, Color = "siyah", Height = 120, Width = 130, ProductId = 2 });//seed data mantığı aynı, ama burada bu işlemi belirtirsek seperation
+            //of concern ilkesine karşı geliriz. Olabildiğince classları modüler yap.
+
+
             base.OnModelCreating(modelBuilder);
         }
     }
