@@ -47,7 +47,8 @@ namespace NLayer.Repository.Repositories
 
         public void Remove(T entity)
         {
-            throw new NotImplementedException();
+            //_context.Entry(entity).State = EntityState.Deleted; alttaki kod ile aynı işlemi yapmaktadır.
+            _dbSet.Remove(entity);
         }
 
         public void RemoveRange(IEnumerable<T> entities)
