@@ -13,7 +13,6 @@ namespace NLayer.Repository
     {
         public AppDbContext(DbContextOptions<AppDbContext>options):base(options) //options alacak çünkü veri tabanı yolunu startup.cs'den veriyor olucaz.
         {
-
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
