@@ -58,7 +58,7 @@ namespace NLayer.Repository.Repositories
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            _dbSet.Update(entity);
         }
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
