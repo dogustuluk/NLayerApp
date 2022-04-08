@@ -20,9 +20,9 @@ namespace NLayer.Repository.Repositories
             _dbSet = _context.Set<T>();
         }
 
-        public Task AddAsync(T entity)
+        public async Task AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _dbSet.AddAsync(entity);
         }
 
         public Task AddRangeAsync(IEnumerable<T> entities)
