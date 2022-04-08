@@ -12,6 +12,10 @@ namespace NLayer.Repository.Repositories
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         protected readonly AppDbContext _context;
+        //protected > ilerleyen süreçte product sınıfına ait temel crud operasyonları dışında; örneğin product'la ilgili kategorileri, product'la ilgili feature'ları almak
+        //istersek protected yerine private yaparsak yapamayız. private yaparsak ProductRepository, IProductRepository, IProductService, ProductService gibi sadece product
+        //sınıfı için özelleştirilmiş sınıflar oluşturmamız gereklidir. Herhangi bir entity için buradaki temel crud işlemleri işimize yaramazsa tabii. Dolayısıyla bu gibi
+        //durumlarda miras almamız için erişim belirleyici metot olan "protected" erişim belirleyicisini private yerine kullanıyoruz.
         private readonly DbSet<T> _dbSet;
         //constructor'da geçilecek olanlar genellikle readonly olur. Çünkü kazara diğer metotlarda herhangi bir değişikliğe gidilmemesi için. Best practise açısından uygun olan budur.
         public GenericRepository(AppDbContext context)
@@ -38,6 +42,8 @@ namespace NLayer.Repository.Repositories
         public IQueryable<T> GetAll(Expression<Func<T, bool>> expression)
         {
             return _dbSet.AsNoTracking().AsQueryable();
+            //AsNoTracking() > burada Ef Core çektiği dataları memory'e almasın ki daha performanslı çalışsın istiyoruz. eğer bunu kullanmazsak çekilen datalar memory'de
+            //dispose edilene kadar bekler.
         }
 
         public async Task<T> GetByIdAsync(int id)
