@@ -30,9 +30,9 @@ namespace NLayer.Repository.Repositories
             await _dbSet.AddRangeAsync(entities);
         }
 
-        public Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return await _dbSet.AnyAsync(expression);
         }
 
         public IQueryable<T> GetAll(Expression<Func<T, bool>> expression)
