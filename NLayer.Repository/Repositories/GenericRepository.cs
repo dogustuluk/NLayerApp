@@ -40,9 +40,9 @@ namespace NLayer.Repository.Repositories
             return _dbSet.AsNoTracking().AsQueryable();
         }
 
-        public Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _dbSet.FindAsync(id);
         }
 
         public void Remove(T entity)
