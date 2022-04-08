@@ -53,7 +53,7 @@ namespace NLayer.Repository.Repositories
 
         public void RemoveRange(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            _dbSet.RemoveRange(entities);
         }
 
         public void Update(T entity)
